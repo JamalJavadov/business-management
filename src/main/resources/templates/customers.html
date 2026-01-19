@@ -22,6 +22,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -29,6 +30,10 @@
                         <td th:text="${customer.fullName}">Customer</td>
                         <td th:text="${customer.email}">email</td>
                         <td th:text="${customer.phoneNumber}">phone</td>
+                        <td class="text-end">
+                            <a class="btn btn-sm btn-outline-primary"
+                               th:href="@{/customers/{id}(id=${customer.id})}">Manage Purchases</a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

@@ -5,7 +5,7 @@ Professional Spring Boot project for managing products, customers, and sales wit
 ## Features
 - Products with image URLs, purchase/sale prices, description, and type.
 - Customers directory.
-- Sales tracking with active/completed status.
+- Purchases tracked under each customer with active/completed status.
 - Dashboard with monthly/yearly revenue statistics.
 - Built-in H2 database and sample data loader.
 
