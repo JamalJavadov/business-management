@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Products')"></head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h3 mb-1">Products</h1>
+            <p class="text-muted">Manage jewelry products and pricing.</p>
+        </div>
+        <a class="btn btn-primary" th:href="@{/products/new}">Add Product</a>
+    </div>
+
+    <div class="row g-3" th:if="${#lists.isEmpty(products)}">
+        <div class="col-12">
+            <div class="alert alert-info">No products added yet.</div>
+        </div>
+    </div>
+
+    <div class="row g-4" th:if="${!#lists.isEmpty(products)}">
+        <div class="col-md-6 col-lg-4" th:each="product : ${products}">
+            <div class="card h-100 shadow-sm">
+                <img class="card-img-top product-image" th:src="${product.imageUrl}" alt="Product image">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${product.name}">Product</h5>
+                    <p class="badge bg-secondary" th:text="${product.type}">TYPE</p>
+                    <p class="card-text" th:text="${product.description}">Description</p>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <small class="text-muted">Purchase</small>
+                            <div>$<span th:text="${#numbers.formatDecimal(product.purchasePrice, 1, 2)}">0</span></div>
+                        </div>
+                        <div>
+                            <small class="text-muted">Sale</small>
+                            <div>$<span th:text="${#numbers.formatDecimal(product.salePrice, 1, 2)}">0</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
