@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Add Product')"></head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h1 class="h4">Add Product</h1>
+                    <p class="text-muted">Enter product information including image URL and pricing.</p>
+                    <form th:action="@{/products}" th:object="${product}" method="post">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Name</label>
+                                <input class="form-control" type="text" th:field="*{name}" required>
+                                <div class="text-danger" th:errors="*{name}"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Type</label>
+                                <select class="form-select" th:field="*{type}" required>
+                                    <option th:each="type : ${types}" th:value="${type}" th:text="${type}"></option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Image URL</label>
+                                <input class="form-control" type="url" th:field="*{imageUrl}" required>
+                                <div class="text-danger" th:errors="*{imageUrl}"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Purchase Price</label>
+                                <input class="form-control" type="number" step="0.01" th:field="*{purchasePrice}" required>
+                                <div class="text-danger" th:errors="*{purchasePrice}"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Sale Price</label>
+                                <input class="form-control" type="number" step="0.01" th:field="*{salePrice}" required>
+                                <div class="text-danger" th:errors="*{salePrice}"></div>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-control" rows="4" th:field="*{description}"></textarea>
+                            </div>
+                        </div>
+                        <div class="mt-4 d-flex gap-2">
+                            <button class="btn btn-primary" type="submit">Save</button>
+                            <a class="btn btn-outline-secondary" th:href="@{/products}">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
